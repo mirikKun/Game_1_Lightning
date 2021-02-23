@@ -61,4 +61,4 @@ public class CubeSpawner : MonoBehaviour
         GameObject clone = Instantiate(cube, transform.position+Vector3.right* snapX * 10+Vector3.forward* snapZ * 10, transform.rotation) as GameObject;
 
     }
-    }
+}

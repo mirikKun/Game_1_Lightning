@@ -43,12 +43,11 @@ public class CameraScript : MonoBehaviour
         CameraRotion();
         ObstaclesReact();
         PlayerReact();
-        
-
+  
     }
     void CameraRotion()
     {
-        xrot += Input.GetAxis("Mouse X")* turnSpeedX*Time.deltaTime ;
+        xrot += Input.GetAxis("Mouse X")* turnSpeedX * Time.deltaTime ;
         yrot += Input.GetAxis("Mouse Y")*turnSpeedY * Time.deltaTime;
 
         yrot = Mathf.Clamp(yrot, -limitY, limitY);
