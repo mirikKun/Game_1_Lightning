@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class CubeFliyng : MonoBehaviour
 {
+    
+
     public float minSpeed =0.01f;
     public float maxSpeed = 0.03f;
     private float speed;
-    Transform player;
+    public Transform endZone;
 
     // Start is called before the first frame update
     void Start()
@@ -21,11 +23,10 @@ public class CubeFliyng : MonoBehaviour
  
         transform.position -= transform.up * speed;
       
-        if (transform.position.y < -20)
+        if (transform.position.y < endZone.position.y-10f)
         {
             transform.DetachChildren();
-            Object.Destroy(gameObject);
-            
+            Object.Destroy(gameObject);            
         }
             
     }

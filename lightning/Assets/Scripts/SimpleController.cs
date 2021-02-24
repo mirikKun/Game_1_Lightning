@@ -11,7 +11,6 @@ public class SimpleController : MonoBehaviour
 
     public float checkDist = 0.2f;
     public LayerMask groundMask;
-    public LayerMask cubeParent;
 
     public float smoothRotation = 0.1f;
     private float smoothVelocity;
@@ -31,7 +30,7 @@ public class SimpleController : MonoBehaviour
     private bool canRush = false;
     private bool doubleJump = false;
     private bool jumping = false;
-    private bool onFloor = false;
+    private bool onWall = false;
 
     
     public CharacterController controller;
@@ -68,7 +67,7 @@ public class SimpleController : MonoBehaviour
         Jump();
         Gravity();
         Rush();
-        OnFloor();
+        OnWall();
     }
 
     void Moving()
@@ -131,6 +130,10 @@ public class SimpleController : MonoBehaviour
         {
             gravityVelocity.y = -1f;
         }
+        if (onWall && gravityVelocity.y <= 0)
+        {
+            gravityVelocity.y = -7f;
+        }
         gravityVelocity.y += gravityPower * Time.deltaTime;
         controller.Move(gravityVelocity * Time.deltaTime);
     }
@@ -159,9 +162,17 @@ public class SimpleController : MonoBehaviour
         }
     }
 
-    void OnFloor()
+    void OnWall()
     {
-
+        if (Physics.Raycast(transform.position, moveDir, 2f, groundMask))
+        {
+            onWall = true;
+            doubleJump = true;
+        }
+        else
+        {
+            onWall = false;
+        }
     }
 }
     

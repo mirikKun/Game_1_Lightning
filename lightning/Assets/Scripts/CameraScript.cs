@@ -74,7 +74,7 @@ public class CameraScript : MonoBehaviour
 
     void ObstaclesReact()
     {
-var distance = Vector3.Distance(transform.position, target.position);
+        var distance = Vector3.Distance(transform.position, target.position);
         currentDistance = distance;
         RaycastHit hit;
         if (Physics.Raycast(target.position, transform.position - target.position, out hit, maxDistance, obstacles)) 

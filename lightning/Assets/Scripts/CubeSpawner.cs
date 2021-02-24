@@ -11,7 +11,7 @@ public class CubeSpawner : MonoBehaviour
     public   int  spawnGridSize = 4;
     int[,] smawnGrid ;
     private int cubeNumber = 0;
-
+    public Transform endZone;
     private float savedTime;
     private float secondsBetweenSpawning;
 
@@ -59,6 +59,7 @@ public class CubeSpawner : MonoBehaviour
             smawnGrid[snapX, snapZ] = 1;
         cubeNumber++;
         GameObject clone = Instantiate(cube, transform.position+Vector3.right* snapX * 10+Vector3.forward* snapZ * 10, transform.rotation) as GameObject;
-
+        CubeFliyng newCubeScript = clone.GetComponent<CubeFliyng>();
+        newCubeScript.endZone = endZone;
     }
 }
