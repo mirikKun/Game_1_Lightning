@@ -12,25 +12,10 @@ public class Bonus : MonoBehaviour
         rush
     }
     public Bonuses bonus;
-    private int boost;
 
     void Start()
     { 
-        if (bonus == Bonuses.doubleJump)
-        {
-            print("doubleJump");
-            boost = 1;
-        }
-        else if(bonus == Bonuses.wallJump)
-        {
-            print("wallJump");
-            boost = 2;
-        }
-        else if (bonus == Bonuses.rush)
-        {
-            print("rush");
-            boost = 3;
-        }
+   
     }
 
     void Update()
@@ -43,7 +28,19 @@ public class Bonus : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            
+            if (bonus == Bonuses.doubleJump)
+            {
+                other.GetComponent<SimpleController>().doubleJumpAvailable = true;
+            }
+            else if (bonus == Bonuses.wallJump)
+            {
+                other.GetComponent<SimpleController>().wallJumpAvailable = true;
+            }
+            else if (bonus == Bonuses.rush)
+            {
+                other.GetComponent<SimpleController>().rushAvailable = true;
+            }
+            Object.Destroy(transform.parent.gameObject);
 
         }
     }

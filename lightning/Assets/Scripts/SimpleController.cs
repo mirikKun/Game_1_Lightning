@@ -7,10 +7,13 @@ public class SimpleController : MonoBehaviour
 {
     public bool isGrounded;
     public Transform groundCheck;
+    
+    
     public Transform roofCheck;
-
+    public bool isOnCheckPoint;
     public float checkDist = 0.2f;
     public LayerMask groundMask;
+    public LayerMask checkPointdCheck;
 
     public float smoothRotation = 0.1f;
     private float smoothVelocity;
@@ -41,6 +44,11 @@ public class SimpleController : MonoBehaviour
 
     private Vector3 direction;
 
+
+    public bool doubleJumpAvailable = false;
+    public bool wallJumpAvailable = false;
+    public bool rushAvailable = false;
+
     void Start()
     {
 
@@ -64,10 +72,13 @@ public class SimpleController : MonoBehaviour
     void Update()
     {
         Moving();
+        OnCheckPoint();
         Jump();
         Gravity();
-        Rush();
-        OnWall();
+        if(rushAvailable)
+            Rush();
+        if(wallJumpAvailable)
+            OnWall();
     }
 
     void Moving()
@@ -88,8 +99,14 @@ public class SimpleController : MonoBehaviour
        
 
     }
+    void OnCheckPoint()
+    {
+        isOnCheckPoint= Physics.CheckSphere(groundCheck.position, checkDist, checkPointdCheck);
+
+    }
     void Jump()
-    { if ((Input.GetButtonDown("Jump")) && (doubleJump))
+    {
+        if ((Input.GetButtonDown("Jump")) && (doubleJump)&&(onWall|| doubleJumpAvailable))
         {
             jumping = false;
             gravityVelocity.y = Mathf.Sqrt(-jump * gravityPower);

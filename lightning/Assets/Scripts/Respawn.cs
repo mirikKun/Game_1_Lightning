@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Respawn : MonoBehaviour
-{ public Transform deathZone;
-       public Transform startPoint;
+{
+    public Transform deathZone;
+    public Transform startPoint;
     // Start is called before the first frame update
     void Start()
     {
