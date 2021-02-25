@@ -4,25 +4,38 @@ using UnityEngine;
 
 public class CubeFliyng : MonoBehaviour
 {
-    
 
-    public float minSpeed =0.01f;
-    public float maxSpeed = 0.03f;
+   // GameManager gm = new GameManager();
+    public float minSpeed =0.1f;
+    public float maxSpeed = 0.3f;
     private float speed;
     public Transform endZone;
+    public float distToAccel=85;
+    public float acceleration = 1;
+    public GameObject gm;
+    public Transform player;
+
 
     // Start is called before the first frame update
     void Start()
     {
         speed= Random.Range(minSpeed, maxSpeed);
+
     }
 
     // Update is called once per frame
     void FixedUpdate()
-    {
- 
-        transform.position -= transform.up * speed;
-      
+    {   
+        if(transform.position.y-player.position.y>distToAccel)
+        {
+            acceleration = gm.GetComponent<GameManager>().cubeAcceleratioon;
+            
+        }
+        else
+        {
+            acceleration = 1;
+        }
+        transform.position -= transform.up * speed*acceleration;
         if (transform.position.y < endZone.position.y-10f)
         {
             transform.DetachChildren();

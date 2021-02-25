@@ -6,6 +6,7 @@ public class Respawn : MonoBehaviour
 {
     public Transform deathZone;
     public Transform startPoint;
+    public GameObject gr;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +18,8 @@ public class Respawn : MonoBehaviour
     {
         if(transform.position.y<deathZone.position.y)
         {
-             transform.position = startPoint.position;
+            gr.GetComponent<GameManager>().RestartGame();
+                
         }
 
     }

@@ -366,8 +366,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 407542087}
+  - component: {fileID: 407542088}
   m_Layer: 0
-  m_Name: DeathPoint
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -385,8 +386,22 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1719518724}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &407542088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 407542086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 003b9fb74b8c6144f8f646253bce163b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playAgainLevelToLoad: CubeFly
+  cubeAcceleratioon: 15
 --- !u!4 &555015695 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 821856829395190400, guid: 535d234339a316b4098c3b54551ce156,
@@ -806,6 +821,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathZone: {fileID: 1820898151}
   startPoint: {fileID: 890533611}
+  gr: {fileID: 407542086}
 --- !u!4 &940141170 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: cfd676078a3faf442a49dfbadc4b0fc7,
@@ -1220,12 +1236,12 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: cfd676078a3faf442a49dfbadc4b0fc7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -54.5
+      value: -55.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cfd676078a3faf442a49dfbadc4b0fc7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 119.1
+      value: 8.3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cfd676078a3faf442a49dfbadc4b0fc7,
         type: 3}
@@ -1618,8 +1634,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 890533611}
-  - {fileID: 407542087}
   - {fileID: 1820898151}
+  - {fileID: 407542087}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1968,7 +1984,7 @@ Transform:
   m_Children:
   - {fileID: 1565923482}
   m_Father: {fileID: 1719518724}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1820898152
 MonoBehaviour:
@@ -1983,6 +1999,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.05
+  ditanceToPlayer: 40
+  checkPoint: 20
   player: {fileID: 940141164}
 --- !u!1001 &1826977490
 PrefabInstance:
@@ -2619,6 +2637,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5845895523989459570, guid: df41db9701640c04da19297cb96576f4,
         type: 3}
+      propertyPath: gm
+      value: 
+      objectReference: {fileID: 407542086}
+    - target: {fileID: 5845895523989459570, guid: df41db9701640c04da19297cb96576f4,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 940141170}
+    - target: {fileID: 5845895523989459570, guid: df41db9701640c04da19297cb96576f4,
+        type: 3}
       propertyPath: endZone
       value: 
       objectReference: {fileID: 1820898151}
@@ -2655,7 +2683,7 @@ PrefabInstance:
     - target: {fileID: 5845895523989459571, guid: df41db9701640c04da19297cb96576f4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 20.1
+      value: 50.6
       objectReference: {fileID: 0}
     - target: {fileID: 5845895523989459571, guid: df41db9701640c04da19297cb96576f4,
         type: 3}

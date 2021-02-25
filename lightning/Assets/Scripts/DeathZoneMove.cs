@@ -5,13 +5,16 @@ using UnityEngine;
 public class DeathZoneMove : MonoBehaviour
 {
     public float speed = 0.05f;
-    
-    private float deathZoneComing;
-    private float smoothComing=0.4f;
-    public GameObject player;
+
+    public float ditanceToPlayer = 75f;
+    public float checkPoint = 40f;
     private float y;
+    public GameObject player;
+    
     private Vector3 moving;
-    // Start is called before the first frame update
+    private float deathZoneComing;
+    private float smoothComing=1f;
+
     void Start()
     {
         
@@ -23,14 +26,21 @@ public class DeathZoneMove : MonoBehaviour
         
         if (player.GetComponent<SimpleController>().isOnCheckPoint)
         {
-            y = Mathf.SmoothDamp(transform.position.y, player.transform.position.y-20, ref deathZoneComing, smoothComing);
+            y = Mathf.SmoothDamp(transform.position.y, player.transform.position.y- checkPoint, ref deathZoneComing, smoothComing);
             moving = new Vector3(transform.position.x, y, transform.position.z);
             transform.position = moving;
 
         }
         else
         {
+            if (player.transform.position.y- transform.position.y> ditanceToPlayer)
+            {
+                y = Mathf.SmoothDamp(transform.position.y, player.transform.position.y - ditanceToPlayer, ref deathZoneComing, smoothComing);
+                moving = new Vector3(transform.position.x, y, transform.position.z);
+                transform.position = moving;
+            }
             transform.position += transform.up * speed;
+            
         }
     }
 }
