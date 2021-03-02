@@ -28,8 +28,7 @@ public class CubeFliyng : MonoBehaviour
     {   
         if(transform.position.y-player.position.y>distToAccel)
         {
-            acceleration = gm.GetComponent<GameManager>().cubeAcceleratioon;
-            
+            acceleration = gm.GetComponent<GameManager>().cubeAcceleratioon;    
         }
         else
         {
@@ -44,18 +43,5 @@ public class CubeFliyng : MonoBehaviour
             
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-      
-        if(other.tag=="Player")
-        {
-  
-            other.transform.SetParent(transform);
-        }
-       
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        other.transform.SetParent(null);
-    }
+
 }

@@ -132,6 +132,7 @@ public class SimpleController : MonoBehaviour
         }
         controller.Move(gravityVelocity * Time.deltaTime);
     }
+
     void Gravity()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, checkDist, groundMask);
@@ -140,7 +141,7 @@ public class SimpleController : MonoBehaviour
         {
             canRush = true;
             jumping = false;
-            gravityVelocity.y = -10f;
+            gravityVelocity.y = -20f;
         }
         
         if (under && gravityVelocity.y >= 0)
@@ -154,6 +155,7 @@ public class SimpleController : MonoBehaviour
         gravityVelocity.y += gravityPower * Time.deltaTime;
         controller.Move(gravityVelocity * Time.deltaTime);
     }
+
     void Rush()
     {
         if (Input.GetButtonDown("Fire3")&&canRush)

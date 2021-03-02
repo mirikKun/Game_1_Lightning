@@ -799,14 +799,14 @@ MonoBehaviour:
   smoothJump: 0.1
   smoothRush: 0.3
   speed: 24
-  gravityPower: -25
+  gravityPower: -30
   jump: 20
   rush: 125
   controller: {fileID: 940141165}
   cam: {fileID: 963194228}
-  doubleJumpAvailable: 0
-  wallJumpAvailable: 0
-  rushAvailable: 0
+  doubleJumpAvailable: 1
+  wallJumpAvailable: 1
+  rushAvailable: 1
 --- !u!114 &940141169
 MonoBehaviour:
   m_ObjectHideFlags: 0

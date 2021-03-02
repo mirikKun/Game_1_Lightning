@@ -6,10 +6,10 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public string playAgainLevelToLoad;
-    public static GameManager gm;
+
     [Range(-1f,15f)]
     public float cubeAcceleratioon = 1f;
-    // Start is called before the first frame update
+
     void Start()
     {
         
@@ -25,8 +25,6 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
-        // we are just loading a scene (or reloading this scene)
-        // which is an easy way to restart the level
         SceneManager.LoadScene(playAgainLevelToLoad);
     }
 }
