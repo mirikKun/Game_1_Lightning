@@ -19,4 +19,11 @@ public class EnterPlatform : MonoBehaviour
     {
         other.transform.SetParent(null);
     }
+    private void Update()
+    {
+        if(transform.parent==null)
+        {
+            Object.Destroy(gameObject);
+        }
+    }
 }

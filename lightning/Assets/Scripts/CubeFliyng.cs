@@ -35,13 +35,16 @@ public class CubeFliyng : MonoBehaviour
             acceleration = 1;
         }
         transform.position -= transform.up * speed*acceleration;
-        if (transform.position.y < endZone.position.y-10f)
-        {
-            transform.DetachChildren();
-            Object.Destroy(gameObject);            
-        }
+      
             
     }
-
+    private void Update()
+    {
+        if (transform.position.y < endZone.position.y - 10f)
+        {
+            transform.DetachChildren();
+            Object.Destroy(gameObject);
+        }
+    }
 
 }
