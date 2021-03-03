@@ -12,15 +12,31 @@ public class Bonus : MonoBehaviour
         rush
     }
     public Bonuses bonus;
+    private Vector3  startPosition;
+    public Vector3 randoMome=Vector3.up;
+    public float step=10;
+    private float direction=1;
+
+    private Vector3 smoothmove;
 
     void Start()
-    { 
-   
+    {
+
+        startPosition = transform.position;
     }
 
     void Update()
     {
-        
+        transform.position = transform.position + randoMome* direction;
+        if (transform.position.y-startPosition.y> step) 
+        {
+            direction =  -1;         
+        }
+        else if(transform.position.y - startPosition.y < -step)
+        {
+            direction = 1;
+        }
+
     }
 
 

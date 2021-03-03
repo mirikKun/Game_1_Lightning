@@ -26,6 +26,7 @@ public class SimpleController : MonoBehaviour
 
     public float speed = 10f;
     public float gravityPower = 9f;
+    public float staticGravity = -20;
     public float jump = 10f;
     public float rush = 100f;
 
@@ -41,7 +42,7 @@ public class SimpleController : MonoBehaviour
     private Vector3 gravityVelocity;
     private Vector3 rushVelocity;
     private Vector3 moveDir = new Vector3(0, 0, 0);
-
+    ParticleSystem lightnings;
     private Vector3 direction;
 
 
@@ -49,9 +50,10 @@ public class SimpleController : MonoBehaviour
     public bool wallJumpAvailable = false;
     public bool rushAvailable = false;
 
+    private float startLifeTime;
     void Start()
     {
-
+        lightnings = GetComponent<ParticleSystem>();
 
     }
     void OnGUI()
@@ -106,42 +108,49 @@ public class SimpleController : MonoBehaviour
     }
     void Jump()
     {
+       
+
         if ((Input.GetButtonDown("Jump")) && (doubleJump)&&(onWall|| doubleJumpAvailable))
         {
+            lightnings.Play();
             jumping = false;
             gravityVelocity.y = Mathf.Sqrt(-jump * gravityPower);
             doubleJump = false;
         }
         if ((Input.GetButtonDown("Jump")) && (isGrounded))
         {
-
             gravityVelocity.y = Mathf.Sqrt(jump * -2 * gravityPower);
             doubleJump = true;
         }
         if (Input.GetButtonUp("Jump") && gravityVelocity.y > 0)
         {
             jumping = true;
-
-            //transform.position- transform.up*transform.position.y*0.9f
         }
 
         if (jumping && gravityVelocity.y > 0)
         {
+            lightnings.Stop();
             gravityVelocity.y = Mathf.SmoothDamp(gravityVelocity.y, gravityVelocity.y * 0.7f, ref smoothGravity, smoothJump);
+            
 
         }
         controller.Move(gravityVelocity * Time.deltaTime);
     }
 
     void Gravity()
-    {
+    {   
         isGrounded = Physics.CheckSphere(groundCheck.position, checkDist, groundMask);
         bool under = Physics.CheckSphere(roofCheck.position, checkDist, groundMask);
         if (isGrounded && gravityVelocity.y <= 0)
         {
+            if (!lightnings.isPlaying)
+            {               
+                lightnings.Play();
+            }
+            
             canRush = true;
             jumping = false;
-            gravityVelocity.y = -20f;
+            gravityVelocity.y = staticGravity;
         }
         
         if (under && gravityVelocity.y >= 0)
@@ -151,6 +160,10 @@ public class SimpleController : MonoBehaviour
         if (onWall && gravityVelocity.y <= 0)
         {
             gravityVelocity.y = -7f;
+        }
+        if(gravityVelocity.y< staticGravity-6)
+        {
+            lightnings.Stop();
         }
         gravityVelocity.y += gravityPower * Time.deltaTime;
         controller.Move(gravityVelocity * Time.deltaTime);
@@ -183,13 +196,16 @@ public class SimpleController : MonoBehaviour
 
     void OnWall()
     {
+       
         if (Physics.Raycast(transform.position, moveDir, 2f, groundMask))
         {
+
             onWall = true;
             doubleJump = true;
         }
         else
         {
+
             onWall = false;
         }
     }
