@@ -5814,9 +5814,9 @@ MonoBehaviour:
   rush: 125
   controller: {fileID: 940141165}
   cam: {fileID: 963194228}
-  doubleJumpAvailable: 1
-  wallJumpAvailable: 1
-  rushAvailable: 1
+  doubleJumpAvailable: 0
+  wallJumpAvailable: 0
+  rushAvailable: 0
 --- !u!114 &940141169
 MonoBehaviour:
   m_ObjectHideFlags: 0

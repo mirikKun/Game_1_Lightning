@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5551242267231928756}
   - component: {fileID: 5551242267231928758}
   m_Layer: 0
-  m_Name: Sphere (1)
+  m_Name: RushBonus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5075041113343361813}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 47.68, y: 0, z: -60.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b15f3c3b50998d42a9151b4cf829ee5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bonus: 1
+  bonus: 2
   randoMome: {x: 0, y: 0.02, z: 0}
   step: 1
 --- !u!198 &5551242267231928757
