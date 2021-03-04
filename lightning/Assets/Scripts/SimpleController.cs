@@ -42,7 +42,7 @@ public class SimpleController : MonoBehaviour
     private Vector3 gravityVelocity;
     private Vector3 rushVelocity;
     private Vector3 moveDir = new Vector3(0, 0, 0);
-    ParticleSystem lightnings;
+    private ParticleSystem lightnings;
     private Vector3 direction;
 
 
@@ -116,6 +116,7 @@ public class SimpleController : MonoBehaviour
             jumping = false;
             gravityVelocity.y = Mathf.Sqrt(-jump * gravityPower);
             doubleJump = false;
+        
         }
         if ((Input.GetButtonDown("Jump")) && (isGrounded))
         {
@@ -173,6 +174,7 @@ public class SimpleController : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire3")&&canRush)
         {
+       
             doubleJump = true;
             rushing = true;
             rushVelocity = moveDir * rush;

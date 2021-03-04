@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public string playAgainLevelToLoad;
 
-    [Range(-1f,15f)]
+    [Range(-1f,30f)]
     public float cubeAcceleratioon = 1f;
 
     void Start()
