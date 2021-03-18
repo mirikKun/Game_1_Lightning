@@ -14,7 +14,7 @@ public class CameraScript : MonoBehaviour
 
     private float currentDistance=10;
     private Vector3 offset;
-
+    private Vector3 direction;
 
 
 
@@ -32,18 +32,15 @@ public class CameraScript : MonoBehaviour
     void Start()
     {
         origin = cam.cullingMask;
-        offset = new Vector3(target.position.x, target.position.y + height, target.position.z + currentDistance);
-  
         transform.LookAt(target);
     }
 
-    // Update is called once per frame
+
     void LateUpdate()
     {
         CameraRotion();
         ObstaclesReact();
         PlayerReact();
-  
     }
     void CameraRotion()
     {
@@ -51,7 +48,7 @@ public class CameraScript : MonoBehaviour
         yrot += Input.GetAxis("Mouse Y")*turnSpeedY * Time.deltaTime;
 
         yrot = Mathf.Clamp(yrot, -limitY, limitY);
-        Vector3 direction = new Vector3(0, 0, -currentDistance);
+        direction = new Vector3(0, 0, currentDistance);
         Quaternion rot = Quaternion.Euler(-yrot,xrot ,0);
         transform.position = target.position + rot * direction;
         transform.LookAt(target.position);

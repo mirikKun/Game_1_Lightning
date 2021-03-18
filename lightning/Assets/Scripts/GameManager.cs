@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public string playAgainLevelToLoad;
-
+    public static GameManager666 gm;
     [Range(-1f,30f)]
     public float cubeAcceleratioon = 1f;
 

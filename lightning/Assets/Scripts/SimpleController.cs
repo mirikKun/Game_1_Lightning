@@ -56,12 +56,7 @@ public class SimpleController : MonoBehaviour
         lightnings = GetComponent<ParticleSystem>();
 
     }
-    void OnGUI()
-    {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-    }
-
+ 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         if (hit.gameObject.tag == "This")
@@ -127,7 +122,6 @@ public class SimpleController : MonoBehaviour
         {
             jumping = true;
         }
-
         if (jumping && gravityVelocity.y > 0)
         {
             lightnings.Stop();
@@ -152,8 +146,7 @@ public class SimpleController : MonoBehaviour
             canRush = true;
             jumping = false;
             gravityVelocity.y = staticGravity;
-        }
-        
+        }  
         if (under && gravityVelocity.y >= 0)
         {
             gravityVelocity.y = -1f;
@@ -185,7 +178,6 @@ public class SimpleController : MonoBehaviour
             
             controller.Move(rushVelocity * Time.deltaTime);
             rushVelocity = Vector3.SmoothDamp(rushVelocity, Vector3.zero, ref smoothRushStop, smoothRush);
-
             if (rushVelocity.magnitude <= 0.1f)
             {
                 rushing = false;
@@ -201,13 +193,11 @@ public class SimpleController : MonoBehaviour
        
         if (Physics.Raycast(transform.position, moveDir, 2f, groundMask))
         {
-
             onWall = true;
             doubleJump = true;
         }
         else
         {
-
             onWall = false;
         }
     }
