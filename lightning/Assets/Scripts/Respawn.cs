@@ -18,9 +18,8 @@ public class Respawn : MonoBehaviour
     {
         if(transform.position.y<deathZone.position.y)
         {
-            gr.GetComponent<GameManager>().RestartGame();
-                
+            GameManager.gm.Death();
+ 
         }
-
     }
 }

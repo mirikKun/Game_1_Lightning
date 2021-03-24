@@ -23,8 +23,9 @@ public class CameraScript : MonoBehaviour
     private LayerMask origin;
     
 
-    public float turnSpeedY = 20;
-    public float turnSpeedX = 30;
+    private float turnSpeedY = 20;
+    private float turnSpeedX = 30;
+    private float invert = -1;
 
     float yrot;
     float xrot;
@@ -33,7 +34,10 @@ public class CameraScript : MonoBehaviour
     {
         origin = cam.cullingMask;
         transform.LookAt(target);
-    }
+        invert = GameOptions.inverted;
+        turnSpeedY = GameOptions.yVelocity;
+        turnSpeedX = GameOptions.xVelocity;
+}
 
 
     void LateUpdate()
@@ -49,7 +53,7 @@ public class CameraScript : MonoBehaviour
 
         yrot = Mathf.Clamp(yrot, -limitY, limitY);
         direction = new Vector3(0, 0, currentDistance);
-        Quaternion rot = Quaternion.Euler(-yrot,xrot ,0);
+        Quaternion rot = Quaternion.Euler(invert * yrot,xrot ,0);
         transform.position = target.position + rot * direction;
         transform.LookAt(target.position);
 
